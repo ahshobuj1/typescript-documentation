@@ -31,9 +31,15 @@
   //
   //
   //
-  // *
+  // * Constraints
 
-  const studentCrouse = <T>(student: T) => {
+  type StudentRequired = {
+    name: string;
+    roll: number;
+    email: string;
+  };
+
+  const studentCrouse = <T extends StudentRequired>(student: T) => {
     const crouse: string = 'Next level web dev 2.0';
     return {
       ...student,
@@ -41,29 +47,26 @@
     };
   };
 
-  const callStudent1 = studentCrouse<{
-    name: string;
-    roll: number;
-    email: string;
-    dev: boolean;
-  }>({
+  const callStudent1 = studentCrouse({
     name: 'shobuj',
     roll: 9101,
     email: 'ahshobuj11@gmail.com',
     dev: true,
   });
 
-  type Student2 = {
-    name: string;
-    roll: number;
-    email: string;
-    level: number;
-  };
-  const callStudent12 = studentCrouse<Student2>({
+  const callStudent12 = studentCrouse({
     name: 'shobuj',
     roll: 9101,
     email: 'ahshobuj11@gmail.com',
     level: 2,
+  });
+
+  const callStudent13 = studentCrouse({
+    name: 'shobuj',
+    roll: 9101,
+    email: 'ahshobuj11@gmail.com',
+    age: 22,
+    id: 12,
   });
 
   //
